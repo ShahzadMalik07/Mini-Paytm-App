@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
             next()
 
         } else {
-            res.json({ msg: "not verified" })
+            res.json({ msg: "not verified person" })
         }
 
     } catch (error) {

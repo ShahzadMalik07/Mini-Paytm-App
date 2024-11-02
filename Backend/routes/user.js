@@ -74,12 +74,11 @@ router.post("/signup", async function (req, res) {
 
 })
 
-router.get("/signin",  async function (req, res) {
-    const username = req.headers.username
-    const password = req.headers.password
-    const jwt = req.headers.authorization
-
-
+router.post("/signin",  async function (req, res) {
+    const username = req.body.username
+    const password = req.body.password
+    console.log(username, password)
+  
 
     const validations = signinZod.safeParse({ username, password })
     if (!validations.success) {
@@ -98,8 +97,11 @@ router.get("/signin",  async function (req, res) {
                 msg: "Wrong Password"
             })
         }
+        let token = jwt.sign({ userId: User._id }, JWT_SECRET)
+        res.json({ token: token })
     }
-    res.json({ jwt: jwt })
+
+    
 })
 
 

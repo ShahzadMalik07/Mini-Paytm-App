@@ -2,10 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Balance = () => {
-  const [balance,setbalance] = useState("")
-
-  
- 
+  const [balance,setbalance] = useState()
   
 
  
@@ -17,7 +14,9 @@ const Balance = () => {
       }
   })
       .then(async(response) => {
-      setbalance(await response.data.balance)
+      setbalance(response.data.balance)
+     
+
       })
 
   },[])
