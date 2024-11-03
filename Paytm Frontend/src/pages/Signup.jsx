@@ -15,7 +15,9 @@ const Signup = () => {
   const [username, setusername] = useState("")
   const [password, setpassword] = useState("")
   const navigate = useNavigate()
-  const settext = useSetRecoilState(userAtom)
+
+  const user = useRecoilValue(userAtom);
+  console.log(user)
  
 
  
@@ -40,7 +42,7 @@ const Signup = () => {
               password
             })
 
-          settext("hello")
+        
             localStorage.setItem("token", response.data.token)
             navigate("/dashboard")
 

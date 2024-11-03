@@ -14,7 +14,7 @@ const Balance = () => {
       }
   })
       .then(async(response) => {
-      setbalance(response.data.balance)
+      setbalance(response?.data?.balance)
      
 
       })

@@ -23,8 +23,8 @@ const Users = () => {
     return (
         <div className='flex flex-col px-8 '>
          
-            <div className="mb-1 text-xl font-semibold" >Users</div>
-            <input onChange={(e) => { setfilter(e.target.value) }} className='p-1 border border-2px-solid' type="text" placeholder='Search users...' />
+            <div className="mb-2 text-xl font-semibold" >Users</div>
+            <input onChange={(e) => { setfilter(e.target.value) }} className='mb-3 p-1 border border-2px-solid' type="text" placeholder='Search users...' />
             {user?.map((user)=><User key={user._id} user={user} />)}
             
             
@@ -39,10 +39,10 @@ export default Users
 
 function User({user}) {
     const navigate = useNavigate()
-    return <div className='flex justify-between mt-3'>
+    return <div className='flex justify-between mt-4'>
         <div className='flex items-center'>
-            <div className='w-10 h-10 bg-green-300 rounded-full flex justify-center items-center'>{user.firstname[0].toUpperCase()}</div>
-            <div className='ml-2 '>{user.firstname}</div>
+            <div className='w-10 h-10 bg-green-500 rounded-full flex justify-center items-center'>{user.firstname[0].toUpperCase()}</div>
+            <div className='ml-2 '>{user.firstname.toUpperCase()}</div>
         </div>
         <button onClick={()=>{
             navigate("/send?id="+ user._id + "&name=" + user.firstname)

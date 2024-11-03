@@ -6,9 +6,12 @@ import Button from '../components/Button'
 import WarningText from '../components/WarningText'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { userAtom } from '../atom'
 
 
 const Signin = () => {
+  const setUser = useSetRecoilState(userAtom);
   const [username, setusername] = useState("")
   const [password, setpassword] = useState("")
   
@@ -22,8 +25,8 @@ const Signin = () => {
       password:password
     })
     localStorage.setItem("token", response.data.token)
-    console.log(response.data)
     navigate("/dashboard")
+    setUser(response?.data.user.firstname)
 
   }
 

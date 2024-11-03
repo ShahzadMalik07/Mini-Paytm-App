@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 
 const Transfer = () => {
@@ -9,6 +9,8 @@ const Transfer = () => {
   const name = searchParams.get("name")
 
   const [amount, setamount] = useState(0)
+  const [loading, setloading] = useState(false)
+  const navigate = useNavigate()
  
 
   return (
@@ -18,7 +20,7 @@ const Transfer = () => {
           <div className='text-center font-bold text-2xl mb-12 mt-4'>Send Money</div>
           <div className='flex items-center px-3 mt-4'>
             <div className='flex items-center justify-center mr-3 w-10 h-10 rounded-full bg-green-500 text-md font-semibold text-white'>{name[0].toUpperCase()}</div>
-            <div className='font-semibold text-xl'>{name}</div>
+            <div className='font-semibold tracking-wide text-xl'>{name.charAt(0).toUpperCase()+name.slice(1)}</div>
           </div>
           <div className='flex flex-col px-3'>
             <p className='text-sm text-gray-600 mb-2 mt-2 font-semibold'>Amount in Rs.</p>
@@ -30,8 +32,9 @@ const Transfer = () => {
                 setamount(0); 
               }
             }} className='px-2 py-1 border border-2px-solid' type="number" />
-            <button onClick={() => {
-              axios.post("http://localhost:3000/api/v1/account/transfer",
+            <button onClick={async () => {
+              setloading(true)
+              await axios.post("http://localhost:3000/api/v1/account/transfer",
                  {
                   to: id,
                   amount
@@ -40,8 +43,10 @@ const Transfer = () => {
                   Authorization: localStorage.getItem("token")
                 }
               })
+              setloading(false)
+              navigate("/dashboard")
 
-            }} className='mt-3 mb-3 px-2 py-1 bg-green-500 text-white rounded-md'>Transfer Money</button>
+            }} className='mt-3 mb-3 px-2 py-1 bg-green-500 text-white rounded-md' disabled={loading}>{ loading ?"Transferring...":"Transfer Money"}</button>
           </div>
 
         </div>

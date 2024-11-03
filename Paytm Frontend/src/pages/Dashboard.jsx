@@ -7,7 +7,7 @@ import { userAtom } from '../atom'
 
 const Dashboard = () => {
   const value = useRecoilValue(userAtom)
-  console.log(value)
+  
   return (
     <div>
       <Appbar/>
