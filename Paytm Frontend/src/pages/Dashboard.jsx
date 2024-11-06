@@ -9,7 +9,7 @@ const Dashboard = () => {
   const value = useRecoilValue(userAtom)
   
   return (
-    <div className='bg-sky-50 h-screen' >
+    <div className='bg-[#E0F5FD] h-screen' >
       <Appbar/>
       <Balance/>
       <Users/>
