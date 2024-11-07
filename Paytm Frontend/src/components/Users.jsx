@@ -11,10 +11,10 @@ const Users = () => {
     let loggedInUserId = null;
 
     if (token) {
-        const decodedToken = jwtDecode(token);  
-        loggedInUserId = decodedToken.userId; 
+        const decodedToken = jwtDecode(token);
+        loggedInUserId = decodedToken.userId;
     }
-  
+
 
 
 
@@ -35,8 +35,12 @@ const Users = () => {
         <div className='flex flex-col px-8 '>
 
             <div className="mb-2 text-xl font-semibold" >Users</div>
-            <div><img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/search-icon-blue.4ea06561.png" alt="" /></div>
-            <input onChange={(e) => { setfilter(e.target.value) }} className='mb-3 p-3 outline-none rounded-md border border-2px-solid' type="text" placeholder='Search users...' />
+            <div className='flex items-center border rounded-lg bg-white'>
+                <img className='h-8 w-8 ml-2' src="https://assetscdn1.paytm.com/movies_new/_next/static/media/search-icon-blue.4ea06561.png" alt="" />
+                <input onChange={(e) => { setfilter(e.target.value) }} className='caret-[#00BAF2]  bg-transparent border-none p-3 outline-none rounded-md border text-lg stroke-1 border-2px-solid' type="text" placeholder='Search users...' />
+
+            </div>
+
             {user?.map((user) => <User key={user._id} user={user} />)}
 
 

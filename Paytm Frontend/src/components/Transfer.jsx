@@ -28,7 +28,7 @@ const Transfer = () => {
     <div className='bg-white h-screen flex justify-center'>
       {success && <div
         style={{
-          backgroundColor: "green",
+          backgroundColor: "#00BAF2",
           color: "white",
           padding: "10px",
           textAlign: "center",
@@ -45,7 +45,7 @@ const Transfer = () => {
         <div className='bg-white w-[45%] px-2 '>
           <div className='text-center font-bold text-2xl mb-12 mt-4'>Send Money</div>
           <div className='flex items-center px-3 mt-4'>
-            <div className='flex items-center justify-center mr-3 w-10 h-10 rounded-full bg-green-500 text-md font-semibold text-white'>{name[0].toUpperCase()}</div>
+            <div className='flex items-center justify-center mr-3 w-10 h-10 rounded-full bg-[#00BAF2]  text-md font-semibold text-white'>{name[0].toUpperCase()}</div>
             <div className='font-semibold tracking-wide text-xl'>{name.charAt(0).toUpperCase() + name.slice(1)}</div>
           </div>
           <div className='flex flex-col px-3'>
@@ -73,7 +73,7 @@ const Transfer = () => {
               setloading(false)
 
 
-            }} className='mt-3 mb-3 px-2 py-1 bg-green-500 text-white rounded-md' disabled={loading}>{loading ? "Transferring..." : "Transfer Money"}</button>
+            }} className='mt-3 mb-3 px-2 py-1 bg-[#00BAF2]  text-white rounded-md' disabled={loading}>{loading ? "Transferring..." : "Transfer Money"}</button>
           </div>
 
         </div>

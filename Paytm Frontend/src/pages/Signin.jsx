@@ -33,7 +33,7 @@ const Signin = () => {
   return (
     <div className='bg-white h-screen flex justify-center'>
       <div className='w-[40%] bg-gray-200 shadow-md rounded-md mt-10 mb-10 flex justify-center items-center'>
-        <form className='w-[50%] bg-white rounded-sm p-[6px]' action="">
+        <form className='w-[65%] bg-white rounded-sm p-4 px-[40px]' action="">
           <Heading label={"Sign In"} />
           <SubHeading text={"Enter Yor Details"} />
           <InputBox onchange={((e) => { setusername(e.target.value) })} label={"Email"} placeholder={"John@gmail.com"} />
