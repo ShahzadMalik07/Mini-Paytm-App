@@ -8,12 +8,30 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { userAtom } from '../atom'
+import Certify from '../components/Certify'
 
 
 const Signin = () => {
   const setUser = useSetRecoilState(userAtom);
-  const [username, setusername] = useState("")
-  const [password, setpassword] = useState("")
+  const [inputs, setinputs] = useState({username:"", password:""})
+  const [focused, setfocused] = useState({username:false, password:false})
+  
+
+  const handleFocus = (field) => {
+    setfocused((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const blurHandle = (field)=>{
+    if(!inputs[field]){
+      setfocused((prev)=>({...prev, [field]:false}))
+    }
+ 
+
+  }
+
+  const handleChange =(field,value)=>{
+    setinputs((prev)=>({...prev,[field]:value}))
+  }
   
 
   const navigate = useNavigate()
@@ -21,8 +39,8 @@ const Signin = () => {
   const handleclick = async (e) => {
     e.preventDefault()
     const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
-      username:username,
-      password:password
+      username:inputs.username,
+      password:inputs.password
     })
     localStorage.setItem("token", response.data.token)
     navigate("/dashboard")
@@ -36,8 +54,9 @@ const Signin = () => {
         <form className='w-[65%] bg-white rounded-sm p-4 px-[40px]' action="">
           <Heading label={"Sign In"} />
           <SubHeading text={"Enter Yor Details"} />
-          <InputBox onchange={((e) => { setusername(e.target.value) })} label={"Email"} placeholder={"John@gmail.com"} />
-          <InputBox onchange={((e) => { setpassword(e.target.value) })} label={"Password"} placeholder={"123456"} />
+          <InputBox blur={()=>blurHandle("username")} focused={focused.username} inputs={inputs.username} onfocus={()=>handleFocus("username")}  onchange={(e)=>handleChange("username",e.target.value)} label={"Email"} placeholder={""} value={inputs.username} />
+          <InputBox blur={()=>blurHandle("password")} focused={focused.password} inputs={inputs.password} onfocus={()=>handleFocus("password")}  onchange={(e)=>handleChange("password",e.target.value)} label={"Password"} placeholder={""} value={inputs.password} />
+          <Certify/>
           <Button onclick={handleclick} btntext={"Sign In"} />
           <WarningText text={"Don't Have an Account?"} btntext={"Sign Up"} to={"/signup"} />
 

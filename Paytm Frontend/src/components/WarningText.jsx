@@ -8,7 +8,7 @@ const WarningText = ({ text, btntext, to }) => {
                 {text}
             </div>
             <div className='pointer underline pl-1 '>
-                <Link className='text-md' to={to}>{btntext}</Link>
+                <Link className='text-md text-[#00BAF2]' to={to}>{btntext}</Link>
             </div>
         </div>
 

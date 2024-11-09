@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form-control {
+    color: gray;
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+  }
+  
+  input[type="checkbox"] {
+    /* Remove default styles */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.1em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    transition: background-color 120ms ease-in-out; /* Smooth background transition */
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #fff; /* Checkmark color (white initially) */
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #00BAF2;
+    border: none;
+     /* Change background color to aqua when checked */
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1); /* Show the checkmark */
+    box-shadow: inset 1em 1em #fff; /* Change checkmark color to white */
+  }
+  
