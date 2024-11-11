@@ -10,14 +10,29 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { userAtom } from '../atom'
 
 const Signup = () => {
-  const [firstname, setfirstname] = useState("")
-  const [lastname, setlastname] = useState("")
-  const [username, setusername] = useState("")
-  const [password, setpassword] = useState("")
+  const [inputs, setinputs] = useState({firstname:"",lastname:"",username:"", password:""})
+  const [focused, setfocused] = useState({username:false, password:false})
+  
+
+  const handleFocus = (field) => {
+    setfocused((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const blurHandle = (field)=>{
+    if(!inputs[field]){
+      setfocused((prev)=>({...prev, [field]:false}))
+    }
+ 
+
+  }
+
+  const handleChange =(field,value)=>{
+    setinputs((prev)=>({...prev,[field]:value}))
+  }
   const navigate = useNavigate()
 
   const user = useRecoilValue(userAtom);
-  console.log(user)
+  console.log(inputs.firstname,inputs.lastname,inputs.username,inputs.password)
  
 
  
@@ -30,16 +45,16 @@ const Signup = () => {
         <div className='w-[50%] bg-white rounded-sm p-[6px]' action="">
           <Heading label={"Sign Up"} />
           <SubHeading text={"Create Your Account"} />
-          <InputBox onchange={(e) => { setfirstname(e.target.value) }} label={"First Name"} placeholder={"John"} />
-          <InputBox onchange={(e) => { setlastname(e.target.value) }} label={"Last Name"} placeholder={"Wick"} />
-          <InputBox onchange={(e) => { setusername(e.target.value) }} label={"Email"} placeholder={"John@gmail.com"} />
-          <InputBox onchange={(e) => { setpassword(e.target.value) }} label={"Password"} placeholder={"123456"} />
+          <InputBox blur={()=>blurHandle("firstname")} focused={focused.firstname} inputs={inputs.firstname} onfocus={()=>handleFocus("firstname")}  onchange={(e)=>handleChange("firstname",e.target.value)} label={"First Name"} placeholder={""} />
+          <InputBox blur={()=>blurHandle("lastname")} focused={focused.lastname} inputs={inputs.lastname} onfocus={()=>handleFocus("lastname")}  onchange={(e)=>handleChange("lastname",e.target.value)} label={"Last Name"} placeholder={""} />
+          <InputBox blur={()=>blurHandle("username")} focused={focused.username} inputs={inputs.username} onfocus={()=>handleFocus("username")}  onchange={(e)=>handleChange("username",e.target.value)} label={"Email"} placeholder={""} />
+          <InputBox blur={()=>blurHandle("password")} focused={focused.password} inputs={inputs.password} onfocus={()=>handleFocus("password")}  onchange={(e)=>handleChange("password",e.target.value)} label={"Password"} placeholder={""} />
           <Button onclick={async () => {
             const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
-              firstname,
-              lastname,
-              username,
-              password
+              firstname:inputs.firstname,
+              lastname:inputs.lastname,
+              username:inputs.username,
+              password:inputs.password
             })
 
         

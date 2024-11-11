@@ -1,6 +1,6 @@
 import './App.css'
 import Dashboard from './pages/Dashboard'
-import NewSign from './pages/NewSign'
+
 import SendMoney from './pages/SendMoney'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
@@ -23,7 +23,7 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/send" element={<SendMoney />} />
-            <Route path="/new" element={<NewSign />} />
+            
           
         </Routes>
       </BrowserRouter>
