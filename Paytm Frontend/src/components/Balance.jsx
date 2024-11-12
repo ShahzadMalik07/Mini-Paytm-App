@@ -22,7 +22,7 @@ const Balance = () => {
   },[])
   return (
     <div className='p-6'>
-      <div className='flex text-xl font-semibold'>Your Balance<div className='ml-2 text-xl font-semibold'>Rs. {balance}</div></div>
+      <div className='flex text-xl font-semibold'>Your Balance<div className='ml-2 text-xl font-semibold'>Rs. {balance? balance.toFixed(2):"0.00"}</div></div>
     </div>
   )
 }
