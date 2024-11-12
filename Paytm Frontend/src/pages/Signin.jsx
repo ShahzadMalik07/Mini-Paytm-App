@@ -56,7 +56,7 @@ const Signin = () => {
           <SubHeading text={"Enter Yor Details"} />
           <InputBox blur={()=>blurHandle("username")} focused={focused.username} inputs={inputs.username} onfocus={()=>handleFocus("username")}  onchange={(e)=>handleChange("username",e.target.value)} label={"Email"} placeholder={""} value={inputs.username} />
           <InputBox blur={()=>blurHandle("password")} focused={focused.password} inputs={inputs.password} onfocus={()=>handleFocus("password")}  onchange={(e)=>handleChange("password",e.target.value)} label={"Password"} placeholder={""} value={inputs.password} />
-          <Certify/>
+          
           <Button onclick={handleclick} btntext={"Sign In"} />
           <WarningText text={"Don't Have an Account?"} btntext={"Sign Up"} to={"/signup"} />
 

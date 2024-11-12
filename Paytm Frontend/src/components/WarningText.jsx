@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const WarningText = ({ text, btntext, to }) => {
     return (
-        <div className='flex items-center justify-center mt-2'>
+        <div className='flex items-center justify-center mt-3 mb-3'>
             <div className='text-gray-400 text-md ' >
                 {text}
             </div>
